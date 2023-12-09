@@ -8,5 +8,4 @@ public class Blob{
     public void SetName(String name){
         Name = name;
     }
-
 }
