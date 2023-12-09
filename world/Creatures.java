@@ -6,39 +6,39 @@ class Creatures extends Blob{
     public int Health = 2;
     private boolean Sick = false;
 
-    private void EvaluateHealth(){
+    public void LiveDay(){
+       if (Alive){
+            boolean foundFood = findFood();
+            if (foundFood = false){
+                Fullness--;
+            }
+            else{
+                Fullness++;
+            }
+
+            if (r.nextInt(0, 100) >= 20){
+                Sick = true;
+            }
+            EvaluateHealth();
+        }
+    }
+        private void EvaluateHealth(){
         if (Name == null) {
         Name = "Unnamed Creature";
         }
-        
         if(Fullness == 0){
             Health--;
         }
-       
         if(Sick){
             Health--;
         }
-       
         if (Health <= 0){
             Dies();
         }
     }
 
-    public void LiveDay(){
-       if (Alive){
-            if (r.nextInt(0, 100) >= 60){
-                Fullness--;
-            }
-            if (r.nextInt(0, 100) >= 20){
-                Sick = true;
-            }
-            
-            EvaluateHealth();
-        }
-    }
-
-    public boolean ShouldReproduce(int Probability){
-        if (Alive && r.nextInt(0, 100) <= Probability){
+    public boolean ShouldReproduce(int ReproduceProbability){
+        if (Alive && r.nextInt(0, 100) <= ReproduceProbability){
             return true;
         }
         return false;
